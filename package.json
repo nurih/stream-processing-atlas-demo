@@ -1,0 +1,13 @@
+{
+  "name": "stream-processing-atlas-demo",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "mongodb": "^6.17.0"
+  }
+}
