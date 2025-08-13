@@ -8,6 +8,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@marp-team/marp-cli": "^4.2.3",
     "mongodb": "^6.17.0"
   }
 }

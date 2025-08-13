@@ -1,10 +1,8 @@
 ---
 marp: true
-theme: uncover
+theme: default
 footer: '&copy; Nuri Halperin 2025 | <nuri@plusnconsulting.com>'
-
 ---
-
 
 # Stream Processing
 
@@ -31,23 +29,16 @@ Part 1: Conceptual Overview (Introductory - ~10 mins)
 
 > This works!*
 
-```mermaid
----
-config:
-  theme: redux-color  
----
+<section class="mermaid">
 sequenceDiagram
     autonumber
-
     participant Table as Database Table
     actor Agent as Analyst
     participant Report as Report Output
-      
-    Agent->>Table: Query
-    Table-->>Agent: <<rows>>
-
-    Agent->>Report: Render
-```
+    Agent ->> Table: Query
+    Table -->> Agent: "rows"
+    Agent ->> Report: Render
+</section>
 
 _\* Must have database, limited scale willing to wait__
 
@@ -55,12 +46,7 @@ _\* Must have database, limited scale willing to wait__
 
 ## Old School: Real Time
 
-```mermaid
----
-config:
-  theme: redux-color
-  look: neo
----
+<section class="mermaid">
 sequenceDiagram
     autonumber
     actor Source as Data Source
@@ -69,14 +55,13 @@ sequenceDiagram
     participant Report as Report Output
     rect rgb(255, 230, 150)
       Source->>Table: Write new data
-      Agent->>Table: Query latest data      
+      Agent->>Table: Query latest data
       Table-->>Agent: Return latest data
     end
     Agent->>Report: Output report
-```
+</section>
 
-> **Note**
->
+
 > * Hotspot
 > * Timer / repeated invoke
 
@@ -96,28 +81,20 @@ sequenceDiagram
 
 ## Stream of Events
 
-```mermaid
----
-config:
-  theme: redux-color
----
+<section class="mermaid">
 timeline
     title Stream of Events
     1 : Event 1
     2 : Event 2
     3 : Event 3
     4 : Event 4
-```
+</section>
 
 ---
 
 ## Windows Over Stream
 
-```mermaid
----
-config:
-  theme: redux-color
----
+<section class="mermaid">
 timeline
     title Stream of Events
     section Window 1
@@ -126,29 +103,22 @@ timeline
     section Window 2
     3 : Event 3
     4 : Event 4
-```
+</section>
 
 ---
 
 ## Processing a Window
 
-```mermaid
----
-config:
-  sankey:
-    showValues: false
-  theme: neo
----
+<section class="mermaid">
 sankey-beta
-
-Event 1, Aggregate  interval [t1..t2),1
-Event 2, Aggregate  interval [t1..t2),1
-Event 3, Aggregate  interval [t1..t2),1
-Event 4, Aggregate  interval [t2..t3),1
-Event 5, Aggregate  interval [t2..t3),1
-Aggregate  interval [t1..t2), Result A, 1
-Aggregate  interval [t2..t3), Result B, 1
-```
+  Event 1, Aggregate  interval [t1..t2),1
+  Event 2, Aggregate  interval [t1..t2),1
+  Event 3, Aggregate  interval [t1..t2),1
+  Event 4, Aggregate  interval [t2..t3),1
+  Event 5, Aggregate  interval [t2..t3),1
+  Aggregate  interval [t1..t2), Result A, 1
+  Aggregate  interval [t2..t3), Result B, 1
+</section>
 
 ---
 
@@ -159,27 +129,16 @@ Aggregate  interval [t2..t3), Result B, 1
 1. Once window _closes_, calculation is performed
 1. Calculated result is _emitted_ (stored, ephemeral, new event)
 
-```mermaid
----
-config:
-  theme: redux
-  look: neo
-  layout: elk
----
+<section class="mermaid">
 flowchart LR
-    S@{ shape: paper-tape, label: "Incoming stream"}
-    W@{ shape: docs, label: "Events [Ti, Ti+wi)"}
-    Q@{ shape: subproc, label: "Aggregate events in window" }
-    R@{ shape: dbl-circ, label: "Result W(Ti)" }
-
+    S>"Incoming stream"]
+    W["(Events Ti, Ti+wi)"]
+    Q{{"Aggregate events in window"}}
+    R((("Result W.Ti")))
     S-- accumulate -->W
     W--calculate -->Q
     Q --emit--> R
-
-  %%  B@{ shape: manual-input, label: "User Input"}
-  %%   D@{ shape: procs, label: "Process Automation"}
-  %%   E@{ shape: paper-tape, label: "Paper Records"}
-```
+</section>
 
 ---
 
@@ -189,7 +148,7 @@ flowchart LR
 > - No JOIN (*)
 > - Output emitted
 
-```sql
+```markdown
 [X] select page, sum(click_count)
 [_] from clicks_table
 [_] where dt between(t1,t2)
@@ -200,12 +159,9 @@ flowchart LR
 
 ## Window
 
-```mermaid
----
-config:
-  theme: redux-color
----
-erDiagram
+<section class="mermaid">
+erDiagram 
+    direction LR
     win["Window"] {
         dt start
         dt end
@@ -216,7 +172,7 @@ erDiagram
     }
     win ||--o{ evt :"set of"
 
-```
+</section>
 
 ---
 
@@ -225,12 +181,9 @@ erDiagram
 **envelope** properties are set by streaming infrastructure.
 **event** properties are set by sensor / producer.
 
-```mermaid
----
-config:
-  theme: redux-color
----
+<section class="mermaid">
 erDiagram
+    direction LR
     env["Envelope"] {
         ordinal id
         object other-meta
@@ -241,8 +194,7 @@ erDiagram
         any field2
     }
     env ||--|| evt :"has"
-
-```
+</section>
 
 ---
 
@@ -258,12 +210,8 @@ erDiagram
 
 ## Tumbling Window
 
-```mermaid
----
-config:
-  theme: redux-color
----
-gitGraph TB:
+<section class="mermaid">
+gitGraph LR:
        commit id: "t(0)"
        commit id: "t(1)"
        commit id: "t(2)"
@@ -276,37 +224,31 @@ gitGraph TB:
        branch Window2
        commit id: "Calculate 3..4" type: HIGHLIGHT
 
+</section>
 
-
-```
-
-- Window is fixed
-- Window starts where previous ended
+* Window is fixed
+* Window starts where previous ended
 
 ---
 
 ## Hopping Window
 
-```mermaid
----
-config:
-  theme: redux-color
----
-gitGraph TB:
-       commit id: "t(0)" 
+<section class="mermaid">
+gitGraph LR:
+       commit id: "t(0)"
        commit id: "t(1)"
        commit id: "t(2)" tag: "3 minute window"
        branch Window1
        commit id: "Calculate 0..2" type: HIGHLIGHT
        checkout main
-       commit id: "t(3)" 
+       commit id: "t(3)"
        branch Window2
        commit id: "Calculate 1..3" type: HIGHLIGHT
        checkout main
        commit id: "t(4)"
        branch Window3
        commit id: "Calculate 2..4" type: HIGHLIGHT
-```
+</section>
 
 - Window is fixed
 - Window starts at a interval from last window start
@@ -315,16 +257,12 @@ gitGraph TB:
 
 ## Hops Can Be Sparse
 
-```mermaid
----
-config:
-  theme: redux-color
----
-gitGraph TB:
-       commit id: "t(0)" 
+<section class="mermaid">
+gitGraph LR:
+       commit id: "t(0)"
        commit id: "t(1)"
        commit id: "t(2)"
-       commit id: "t(3)" 
+       commit id: "t(3)"
        branch Window1
        commit id: "Calculate 0..2" type: HIGHLIGHT
        checkout main
@@ -335,9 +273,7 @@ gitGraph TB:
        branch Window2
        commit id: "Calculate 6..7" type: HIGHLIGHT
 
-
-
-```
+</section>
 
 > Hopping window can express Tumbling
 
@@ -376,7 +312,15 @@ Use cases that resonate (retail, IoT, gaming, finance)
 ## Q&A / Thank You
 
 ---
-
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid/+esm";
+  
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "redux-color",
+    look: "neo",
+    layout: "elk",
+    sankey: { showValues: false }
+  }
+ );
 </script>
