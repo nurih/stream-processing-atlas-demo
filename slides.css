@@ -1,0 +1,10 @@
+/* Marp style for headers */
+h1, h2 {
+  /* Add your header styles here */
+  font-family: 'Cooper Black', sans-serif;
+  font-weight: bold;
+}
+
+body{
+  background-color: black;
+}

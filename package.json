@@ -1,14 +1,17 @@
 {
   "name": "stream-processing-atlas-demo",
   "private": true,
+  "scripts": {
+    "build": "marp ./slide-deck.md --allow-local-files --html -o ./slide-deck.html"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@marp-team/marp-cli": "^4.2.3"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
-    "@marp-team/marp-cli": "^4.2.3",
     "mongodb": "^6.17.0"
   }
 }

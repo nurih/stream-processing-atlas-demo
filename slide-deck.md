@@ -1,33 +1,38 @@
 ---
 marp: true
-theme: default
+theme: gaia
 footer: '&copy; Nuri Halperin 2025 | <nuri@plusnconsulting.com>'
 ---
+<style>
+    :root {
+        background-color: #fefefe;
+}
+h1, h2 {
+    font-family: 'Cooper Black', serif;
+}
+</style>
 
 # Stream Processing
 
-## Querying Data Streams: Drinking from the Firehose
+A talk about dealing with data that arrives as a stream.
 
-> _Nuri Halperin | Kansas City Developer Conference 2025_
+![bg left:40%](https://images.pexels.com/photos/1582043/pexels-photo-1582043.jpeg)
 
 ---
 
 ## Agenda
 
-1. Understanding data streams vs. data at rest
+1. Data streams vs. data at rest
 1. Core challenges of real-time data processing
 1. Powerful stream query techniques (windows, aggregations)
 1. Real-time analytics patterns
 1. Demo with MongoDB Atlas Stream Processor
 1. Q&A
-
-Part 1: Conceptual Overview (Introductory - ~10 mins)
-
+![bg right:30%](https://images.pexels.com/photos/1226398/pexels-photo-1226398.jpeg)
 ---
 
 ## "Classic" Reporting
 
-> This works!*
 
 <section class="mermaid">
 sequenceDiagram
@@ -40,7 +45,8 @@ sequenceDiagram
     Agent ->> Report: Render
 </section>
 
-_\* Must have database, limited scale willing to wait__
+_Must have database, limited scale willing to wait_
+![bg opacity:0.12](https://images.pexels.com/photos/698554/pexels-photo-698554.jpeg)
 
 ---
 
@@ -61,9 +67,7 @@ sequenceDiagram
     Agent->>Report: Output report
 </section>
 
-
-> * Hotspot
-> * Timer / repeated invoke
+_Hotspot risk with timer / repeated invoke_
 
 ---
 
@@ -160,7 +164,7 @@ flowchart LR
 ## Window
 
 <section class="mermaid">
-erDiagram 
+erDiagram
     direction LR
     win["Window"] {
         dt start
@@ -281,23 +285,27 @@ gitGraph LR:
 
 ## Challenges of Data Streams
 
-1. Non-transactional: No fixed boundaries
+1. Non-transactional, time-relative boundaries
 1. Volume, velocity
 1. Late arrival
 1. "Missing" events
 1. Idemoptency
+1. Recovery from processing failure
+1. Reconcilliation
 
 ---
 
 ## Intro to MongoDB Atlas Stream Processor
 
-Brief intro, capabilities, when to use it
-
-Link to your GitHub repository (for attendees to explore)
+- Brief intro
+- Capabilities
+- When to use it
 
 ---
 
 ## Demo
+
+### github: /nurih/stream-processing-atlas-demo
 
 ---
 
@@ -311,7 +319,6 @@ Use cases that resonate (retail, IoT, gaming, finance)
 
 ## Q&A / Thank You
 
----
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid/+esm";
   
