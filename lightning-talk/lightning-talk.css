@@ -1,0 +1,136 @@
+/* @theme lightning-talk */
+
+:root {
+  --color-background: #fefeff;
+  --color-foreground: #444;
+  --color-primary: #44a;
+  --color-secondary: #66f;
+  --color-accent: #a108edff;
+  --font-main: sans-serif;
+}
+
+section {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-main);
+  font-size: 1.8rem;
+  padding: 3rem;
+}
+
+h1,
+h2 {
+  font-family: "Cooper Black";
+  font-weight: bold;
+  margin-top: 0.3em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  color: var(--color-primary);
+
+  border-bottom: 7px solid var(--color-secondary);
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  color: var(--color-secondary);
+  border-left: 7px solid var(--color-primary);
+  padding-left: 0.5em;
+  background: #f6f9ff;
+}
+
+h3 {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+ul,
+ol {
+  font-size: 1.1em;
+  margin-left: 2em;
+  margin-bottom: 1em;
+  line-height: 1.8;
+}
+
+blockquote {
+  background: #e3e8ef;
+  border-left: 6px solid var(--color-accent);
+  padding: 1em 1.2em;
+  margin: 1.2em 0;
+  color: #374151;
+  font-style: italic;
+  border-radius: 0 8px 8px 0;
+}
+
+code,
+pre {
+  background: #f3f6fa;
+  color: #174ea6;
+  padding: 0.25em 0.5em;
+  border-radius: 5px;
+  font-family: "JetBrains Mono", "D2Coding", "Fira Mono", monospace;
+  font-size: 1em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+th,
+td {
+  border: 1.5px solid #dbeafe;
+  padding: 0.5em 0.7em;
+  text-align: left;
+}
+
+th {
+  background: #e8f0fe;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+header {
+  position: absolute;
+  top: 28px;
+  left: 56px;
+  color: #64748b;
+  font-size: 1.2em;
+  opacity: 0.85;
+  font-family: var(--font-main);
+  letter-spacing: 0.5px;
+}
+
+footer {
+  position: absolute;
+  bottom: 28px;
+  right: 56px;
+  color: #64748b;
+  font-size: 16px;
+  opacity: 0.85;
+  font-family: var(--font-main);
+  letter-spacing: 0.5px;
+}
+
+img,
+figure {
+  margin: 1.5em auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px 0 #e0e7ef;
+  max-width: 95%;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #c7d2fe;
+  margin: 2em 0 1em 0;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+}
+.column {
+  width: 48%;
+}

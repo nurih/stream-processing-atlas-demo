@@ -2,11 +2,12 @@
   "name": "stream-processing-atlas-demo",
   "private": true,
   "scripts": {
-    "build": "marp ./slide-deck.md --allow-local-files --html -o ./slide-deck.html"
+    "build:deck": "marp ./slide-deck.md --allow-local-files --html -o ./slide-deck.html",
+    "build:lightning": "marp ./lightning-talk/lightning-talk.md --allow-local-files --html -o ./lightning-talk/lightning-talk.html"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@marp-team/marp-cli": "^4.2.3"
+    "@marp-team/marp-cli": "^4.2.3"    
   },
   "peerDependencies": {
     "typescript": "^5"

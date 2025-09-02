@@ -285,13 +285,13 @@ gitGraph LR:
 
 ## Challenges of Data Streams
 
-1. Non-transactional, time-relative boundaries
-1. Volume, velocity
-1. Late arrival
-1. "Missing" events
-1. Idemoptency
-1. Recovery from processing failure
-1. Reconcilliation
+* Non-transactional, time-relative boundaries
+* Volume, velocity
+* Late arrival
+* "Missing" events
+* Idemoptency
+* Recovery from processing failure
+* Reconcilliation
 
 ---
 
