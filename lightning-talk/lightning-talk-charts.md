@@ -107,6 +107,8 @@ gantt
 
 ## Hopping WIndow - Sparse
 
+### THIS IS NOT POSSIBLE! `hopSize` cannot be larger than `interval`
+
 ```mermaid
 ---
 config:
@@ -118,7 +120,7 @@ gantt
     tickInterval 30minutes
     todayMarker off
 
-    title Sparse Staggered Showtimes
+    title Sparse Staggered Showtimes - NOT POSSIBLE!!!
     Big @ 1pm :done, des1, 12:00, 2h
     Elf @ 3pm :done, des2, 15:00, 2h
     Jaws @ 5pm :done, des3, 18:00, 2h
@@ -191,4 +193,34 @@ flowchart TD
 
   
   e2["Big @ 1 PM"] --> T3[Arrived 1:21 PM]
+```
+
+## Session Window
+
+```mermaid
+---
+config:
+  theme: forest
+  themeVariables:
+    fontSize: '24px'
+---
+gantt
+    title Dynamic Window Width
+    dateFormat HH:mm
+    axisFormat %H:%M
+    tickInterval 10minute
+    
+    Official Start: vert, v1, 22:00, 1s
+    
+    section Theater 1
+    Rocky Horror Picture Show (100 min): done, rhps, 22:00, 100m
+    Viewer 1 : milestone, v1, 21:56, 1s
+    Viewer 2 : milestone, v2, 21:58, 1s
+    
+    section Theater 2
+    Wait... : crit, extra, 22:00, 10m
+    Clerks (90min): active, rhps, 22:10, 90m
+    
+    Viewer 3 : milestone, v3, 22:05, 1s
+    Viewer 4 : milestone, v4, 22:10, 1s
 ```

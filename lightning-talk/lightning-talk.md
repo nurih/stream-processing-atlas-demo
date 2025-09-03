@@ -80,7 +80,7 @@ style: |
 `connectionName` as configured
 
 - 1st stage: `$source`
-- last state: `$merge` | `$out`
+- last state: `$merge` | `$emit | $externalFunction`
 
   </div>
   <div class="myColumn">
@@ -108,11 +108,11 @@ style: |
 
 ## Windowing and time basis
 
-Windows are fixed width.
+Windows are fixed width (usually).
 
 ![ ](./event-time-window-time.svg)
 
-Windows computate over events that occured within it.
+Output is computed on events within its time boundaries.
 
 ---
 
@@ -184,34 +184,6 @@ sp.createStreamProcessor("mySP", pipeline)
 
 ---
 
-## Hopping Window - Sparse
-
-![](hopping-window-sparse.png)
-
----
-
-## Sparse - How?
-
-![bg right:30% fit](hopping-window-sparse.png)
-
-```javascript
-{
-  $hoppingWindow:
-  {
-    hopSize:  {size: 60, unit: "minute" },
-    interval: {size: 20, unit: "minute" },
-    pipeline: [
-      {
-        $group: {
-          _id: "$movie",
-          walkIns: { $sum: "$ticketCount" }
-        }
-      } 
-    ] ...
-```
-
----
-
 ## Missed the Window
 
 Oops! What to do?
@@ -272,9 +244,8 @@ Oops! What to do?
   * $validate rejections
   * Payload deserialization errors
 * Time Boundary Violations (late/early)
-* Aggregation pipeline errors
-* Change stream missing full document
-* Programmed
+* Aggregation pipeline stage errors
+* Full Document not available (change stream)
 
 ---
 
@@ -292,6 +263,14 @@ const options = {
 
 sp.createStreamProcessor("mySP", /** pipeline */, options);
 ```
+
+---
+
+## Session Window
+
+* Closes when no event seen `gap` time after latest.
+
+![bg left:60% contain](session-window.svg)
 
 ---
 
