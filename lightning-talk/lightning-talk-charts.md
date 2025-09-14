@@ -58,7 +58,7 @@ flowchart TD
   subgraph s1["1PM Showtimes"]
     T1["Big @ 1 PM"]
     T2["Elf @ 1 PM"]
-    T3["Elf @ 1 PM"]
+    T3["Jaws @ 1 PM"]
   end
 ```
 

@@ -91,7 +91,9 @@ style: |
       connectionName: "mdbIn",
       db: "stream-demo",
       collection: "things" }},
+
   // { some processing stages...},
+  
   { $merge:{ 
       into:{
         connectionName:"mdbConn",
@@ -104,6 +106,14 @@ style: |
 </div>
 
 <!-- Connection names are defined in the registry -->
+---
+
+## Visual Builder
+
+> Build and instantiate processor in Atlas.
+
+![bg right:60% fit](visual-builder-atlas.jpeg)
+
 ---
 
 ## Windowing and time basis
@@ -141,7 +151,7 @@ sp.createStreamProcessor("mySP", pipeline)
 ```javascript
 {
   $tumblingWindow: {
-    interval: { size: 30, unit: "seconds" },
+    interval: { size: 2, unit: "hour" },
     pipeline: [
       { 
         $group: {
@@ -170,8 +180,8 @@ sp.createStreamProcessor("mySP", pipeline)
 {
   $hoppingWindow:
   {
-    interval: {size: 20, unit: "minute" },
-    hopSize:  {size: 10, unit: "minute" },
+    interval: {size: 1, unit: "hour" },
+    hopSize:  {size: 15, unit: "minute" },
     pipeline: [
       { 
         $group: {
@@ -207,8 +217,8 @@ Oops! What to do?
 ```javascript
 {
   $tumblingWindow: {
-    allowedLateness: { size: 1, unit: "minute"},
-    interval: { size: 30, unit: "seconds" },
+    allowedLateness: { size: 10, unit: "minute"},
+    interval: { size: 2, unit: "hour" },
     pipeline: [
       { $group: {
           _id: "$movie",
