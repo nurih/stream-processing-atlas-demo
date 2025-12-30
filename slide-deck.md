@@ -2,15 +2,15 @@
 marp: true
 theme: gaia
 footer: '&copy; Nuri Halperin 2025 | <nuri@plusnconsulting.com>'
----
-<style>
+style: |
     :root {
         background-color: #fefefe;
-}
-h1, h2 {
-    font-family: 'Cooper Black', serif;
-}
-</style>
+    }
+    h1, h2 {
+        font-family: 'Cooper Black', serif;
+    }
+
+---
 
 # Stream Processing
 
@@ -29,20 +29,23 @@ A talk about dealing with data that arrives as a stream.
 1. Demo with MongoDB Atlas Stream Processor
 1. Q&A
 ![bg right:30%](https://images.pexels.com/photos/1226398/pexels-photo-1226398.jpeg)
+
 ---
 
 ## "Classic" Reporting
 
-
 <section class="mermaid">
-sequenceDiagram
-    autonumber
-    participant Table as Database Table
-    actor Agent as Analyst
-    participant Report as Report Output
-    Agent ->> Table: Query
-    Table -->> Agent: "rows"
-    Agent ->> Report: Render
+```mermaid
+%%{init: {'theme':'redux-color'}}%%
+    sequenceDiagram
+        autonumber
+        participant Table as Database Table
+        actor Agent as Analyst
+        participant Report as Report Output
+        Agent ->> Table: Query
+        Table -->> Agent: "rows"
+        Agent ->> Report: Render
+```mermaid
 </section>
 
 _Must have database, limited scale willing to wait_
@@ -164,6 +167,7 @@ flowchart LR
 ## Window
 
 <section class="mermaid">
+```mermaid
 erDiagram
     direction LR
     win["Window"] {
@@ -175,7 +179,7 @@ erDiagram
         object data
     }
     win ||--o{ evt :"set of"
-
+```
 </section>
 
 ---
@@ -320,12 +324,13 @@ Use cases that resonate (retail, IoT, gaming, finance)
 ## Q&A / Thank You
 
 <script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid/+esm";
+  import mermaid from "./node_modules/mermaid";
   
   mermaid.initialize({
+    securityLevel: "loose",
     startOnLoad: true,
-    theme: "redux-color",
-    look: "neo",
+    theme: "neo",
+    look: "handDrawn",
     layout: "elk",
     sankey: { showValues: false }
   }

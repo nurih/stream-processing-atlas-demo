@@ -6,8 +6,7 @@
     "build:lightning": "marp ./lightning-talk/lightning-talk.md --allow-local-files --html -o ./lightning-talk/lightning-talk.html"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "@marp-team/marp-cli": "^4.2.3"    
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
