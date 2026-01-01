@@ -3,13 +3,12 @@ marp: true
 theme: gaia
 footer: '&copy; Nuri Halperin 2025 | <nuri@plusnconsulting.com>'
 style: |
-    :root {
-        background-color: #fefefe;
-    }
-    h1, h2 {
-        font-family: 'Cooper Black', serif;
-    }
-
+  :root {
+    background-color: #fefefe;
+  }
+  h1, h2 {
+    font-family: 'Cooper Black', serif;
+  }
 ---
 
 # Stream Processing
@@ -34,19 +33,20 @@ A talk about dealing with data that arrives as a stream.
 
 ## "Classic" Reporting
 
-<section class="mermaid">
 ```mermaid
-%%{init: {'theme':'redux-color'}}%%
-    sequenceDiagram
-        autonumber
-        participant Table as Database Table
-        actor Agent as Analyst
-        participant Report as Report Output
-        Agent ->> Table: Query
-        Table -->> Agent: "rows"
-        Agent ->> Report: Render
-```mermaid
-</section>
+---
+config:
+  theme: 'neo'
+---
+  sequenceDiagram
+    autonumber
+    participant Table as Database Table
+    actor Agent as Analyst
+    participant Report as Report Output
+    Agent ->> Table: Query
+    Table -->> Agent: "rows"
+    Agent ->> Report: Render
+```
 
 _Must have database, limited scale willing to wait_
 ![bg opacity:0.12](https://images.pexels.com/photos/698554/pexels-photo-698554.jpeg)
@@ -55,8 +55,12 @@ _Must have database, limited scale willing to wait_
 
 ## Old School: Real Time
 
-<section class="mermaid">
-sequenceDiagram
+```mermaid
+---
+config:
+  theme: 'neo'
+---
+  sequenceDiagram
     autonumber
     actor Source as Data Source
     participant Table as Table
@@ -68,7 +72,7 @@ sequenceDiagram
       Table-->>Agent: Return latest data
     end
     Agent->>Report: Output report
-</section>
+```
 
 _Hotspot risk with timer / repeated invoke_
 
@@ -88,21 +92,29 @@ _Hotspot risk with timer / repeated invoke_
 
 ## Stream of Events
 
-<section class="mermaid">
-timeline
+```mermaid
+---
+config:
+  theme: 'neo'
+---
+  timeline
     title Stream of Events
     1 : Event 1
     2 : Event 2
     3 : Event 3
     4 : Event 4
-</section>
+```
 
 ---
 
 ## Windows Over Stream
 
-<section class="mermaid">
-timeline
+```mermaid
+---
+config:
+  theme: 'neo'
+---
+  timeline
     title Stream of Events
     section Window 1
     1 : Event 1
@@ -110,14 +122,14 @@ timeline
     section Window 2
     3 : Event 3
     4 : Event 4
-</section>
+```
 
 ---
 
 ## Processing a Window
 
-<section class="mermaid">
-sankey-beta
+```mermaid
+  sankey-beta
   Event 1, Aggregate  interval [t1..t2),1
   Event 2, Aggregate  interval [t1..t2),1
   Event 3, Aggregate  interval [t1..t2),1
@@ -125,7 +137,7 @@ sankey-beta
   Event 5, Aggregate  interval [t2..t3),1
   Aggregate  interval [t1..t2), Result A, 1
   Aggregate  interval [t2..t3), Result B, 1
-</section>
+```
 
 ---
 
@@ -136,8 +148,12 @@ sankey-beta
 1. Once window _closes_, calculation is performed
 1. Calculated result is _emitted_ (stored, ephemeral, new event)
 
-<section class="mermaid">
-flowchart LR
+```mermaid
+---
+config:
+  theme: 'neo'
+---
+  flowchart LR
     S>"Incoming stream"]
     W["(Events Ti, Ti+wi)"]
     Q{{"Aggregate events in window"}}
@@ -145,7 +161,7 @@ flowchart LR
     S-- accumulate -->W
     W--calculate -->Q
     Q --emit--> R
-</section>
+```
 
 ---
 
@@ -166,21 +182,23 @@ flowchart LR
 
 ## Window
 
-<section class="mermaid">
 ```mermaid
+---
+config:
+  theme: 'neo'
+---
 erDiagram
     direction LR
     win["Window"] {
-        dt start
-        dt end
+      dt start
+      dt end
     }
     evt["Wrapped Event"] {
-        meta envelope
-        object data
+      meta envelope
+      object data
     }
     win ||--o{ evt :"set of"
 ```
-</section>
 
 ---
 
@@ -189,20 +207,24 @@ erDiagram
 **envelope** properties are set by streaming infrastructure.
 **event** properties are set by sensor / producer.
 
-<section class="mermaid">
-erDiagram
+```mermaid
+---
+config:
+  theme: 'neo'
+---
+  erDiagram
     direction LR
     env["Envelope"] {
-        ordinal id
-        object other-meta
+      ordinal id
+      object other-meta
     }
     evt["Payload"] {
-        scalar id
-        any field1
-        any field2
+      scalar id
+      any field1
+      any field2
     }
     env ||--|| evt :"has"
-</section>
+```
 
 ---
 
@@ -218,21 +240,25 @@ erDiagram
 
 ## Tumbling Window
 
-<section class="mermaid">
-gitGraph LR:
-       commit id: "t(0)"
-       commit id: "t(1)"
-       commit id: "t(2)"
-       branch Window1
-       commit id: "Calculate 0..2" type: HIGHLIGHT
-       checkout main
-       commit id: "t(3)"
-       commit id: "t(4)"
-       commit id: "t(5)"
-       branch Window2
-       commit id: "Calculate 3..4" type: HIGHLIGHT
+```mermaid
+---
+config:
+  theme: 'neo'
+---
+  gitGraph LR:
+    commit id: "t(0)"
+    commit id: "t(1)"
+    commit id: "t(2)"
+    branch Window1
+    commit id: "Calculate 0..2" type: HIGHLIGHT
+    checkout main
+    commit id: "t(3)"
+    commit id: "t(4)"
+    commit id: "t(5)"
+    branch Window2
+    commit id: "Calculate 3..4" type: HIGHLIGHT
 
-</section>
+```
 
 * Window is fixed
 * Window starts where previous ended
@@ -241,22 +267,26 @@ gitGraph LR:
 
 ## Hopping Window
 
-<section class="mermaid">
-gitGraph LR:
-       commit id: "t(0)"
-       commit id: "t(1)"
-       commit id: "t(2)" tag: "3 minute window"
-       branch Window1
-       commit id: "Calculate 0..2" type: HIGHLIGHT
-       checkout main
-       commit id: "t(3)"
-       branch Window2
-       commit id: "Calculate 1..3" type: HIGHLIGHT
-       checkout main
-       commit id: "t(4)"
-       branch Window3
-       commit id: "Calculate 2..4" type: HIGHLIGHT
-</section>
+```mermaid
+---
+config:
+  theme: 'neo'
+---
+  gitGraph LR:
+    commit id: "t(0)"
+    commit id: "t(1)"
+    commit id: "t(2)" tag: "3 minute window"
+    branch Window1
+    commit id: "Calculate 0..2" type: HIGHLIGHT
+    checkout main
+    commit id: "t(3)"
+    branch Window2
+    commit id: "Calculate 1..3" type: HIGHLIGHT
+    checkout main
+    commit id: "t(4)"
+    branch Window3
+    commit id: "Calculate 2..4" type: HIGHLIGHT
+```
 
 - Window is fixed
 - Window starts at a interval from last window start
@@ -265,23 +295,27 @@ gitGraph LR:
 
 ## Hops Can Be Sparse
 
-<section class="mermaid">
-gitGraph LR:
-       commit id: "t(0)"
-       commit id: "t(1)"
-       commit id: "t(2)"
-       commit id: "t(3)"
-       branch Window1
-       commit id: "Calculate 0..2" type: HIGHLIGHT
-       checkout main
-       commit id: "t(4)"
-       commit id: "t(5)"
-       commit id: "t(6)"
-       commit id: "t(7)"
-       branch Window2
-       commit id: "Calculate 6..7" type: HIGHLIGHT
+```mermaid
+---
+config:
+  theme: 'neo'
+---
+  gitGraph LR:
+    commit id: "t(0)"
+    commit id: "t(1)"
+    commit id: "t(2)"
+    commit id: "t(3)"
+    branch Window1
+    commit id: "Calculate 0..2" type: HIGHLIGHT
+    checkout main
+    commit id: "t(4)"
+    commit id: "t(5)"
+    commit id: "t(6)"
+    commit id: "t(7)"
+    branch Window2
+    commit id: "Calculate 6..7" type: HIGHLIGHT
 
-</section>
+```
 
 > Hopping window can express Tumbling
 
@@ -322,17 +356,3 @@ Use cases that resonate (retail, IoT, gaming, finance)
 ---
 
 ## Q&A / Thank You
-
-<script type="module">
-  import mermaid from "./node_modules/mermaid";
-  
-  mermaid.initialize({
-    securityLevel: "loose",
-    startOnLoad: true,
-    theme: "neo",
-    look: "handDrawn",
-    layout: "elk",
-    sankey: { showValues: false }
-  }
- );
-</script>

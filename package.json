@@ -1,12 +1,18 @@
 {
   "name": "stream-processing-atlas-demo",
   "private": true,
+  "type": "module",
   "scripts": {
     "build:deck": "marp ./slide-deck.md --allow-local-files --html -o ./slide-deck.html",
+    "build:test": "marp ./__marp.test.md --html -o ./__marp.test.html",
     "build:lightning": "marp ./lightning-talk/lightning-talk.md --allow-local-files --html -o ./lightning-talk/lightning-talk.html"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@marp-team/marp-cli": "^4.2.3",
+    "@marp-team/marp-core": "^4.2.0",
+    "@mermaid-js/mermaid-cli": "^11.12.0",
+    "@types/bun": "latest",
+    "mermaid": "^11.12.2"
   },
   "peerDependencies": {
     "typescript": "^5"
