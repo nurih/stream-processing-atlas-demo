@@ -51,3 +51,32 @@ Watch the calculated window results produced into the **output** collection (`de
 bun run watch
 ```
 
+You will see output such as
+
+```javascript
+...
+// ⏰ 👀 📝  👇
+{
+  "documentKey": {
+    "_id": "SKU-1"
+  },
+  "updateDescription": {
+    "updatedFields": {
+      "_stream_meta": {
+        "source": {
+          "type": "atlas"
+        },
+        "window": {
+          "start": "2026-01-12T18:42:50.000Z",
+          "end": "2026-01-12T18:43:00.000Z"
+        }
+      },
+      "total": 32.17
+    },
+    "removedFields": [],
+    "truncatedArrays": []
+  },
+  "wallTime": "2026-01-12T18:43:06.082Z"
+}
+```
+
