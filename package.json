@@ -4,8 +4,10 @@
   "type": "module",
   "scripts": {
     "build:deck": "marp ./slide-deck.md --allow-local-files --html -o ./slide-deck.html",
-    "build:test": "marp ./__marp.test.md --html -o ./__marp.test.html",
-    "build:lightning": "marp ./lightning-talk/lightning-talk.md --allow-local-files --html -o ./lightning-talk/lightning-talk.html"
+    "build:lightning": "mmdc -i ./lightning-talk/lightning-talk.md -o ./lightning-talk/lightning-talk.markdown -e svg -a ./lightning-talk/assets; marp ./lightning-talk/lightning-talk.markdown --html -o ./lightning-talk/lightning-talk.html",
+    "build:movies": "mmdc -i ./movies/slides.md -o ./movies/slides.markdown -e png -a ./movies/assets; marp ./movies/slides.markdown --html -o ./movies/slides.html",
+    "pump": "bun pump-events.js",
+    "watch": "bun watch-results.js"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.2.3",

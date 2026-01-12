@@ -45,8 +45,8 @@ async function runStreamProcessing() {
 
   try {
     await client.connect();
-    const database = client.db("your_database_name");
-    const collection = database.collection("stream-demo");
+    const database = client.db("demo");
+    const collection = database.collection("buy");
 
     const pipeline = [
       {

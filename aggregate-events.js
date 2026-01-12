@@ -65,4 +65,8 @@ p.start();
 
 // To trigger the operation, enter some documents into the watched collection 
 db.buy.insertMany(generateDocs());
+// or run ./pump-events.js in this repo.
 `)
+
+p = createInstance();
+p.start();

@@ -29,7 +29,7 @@ async function run() {
 
     console.log(new Date().toISOString(), ': ', doc);
 
-    await new Promise((res) => setTimeout(res, delayMilli(1, 4)));
+    await new Promise((res) => setTimeout(res, delayMilli(0, 6)));
   }
 }
 
