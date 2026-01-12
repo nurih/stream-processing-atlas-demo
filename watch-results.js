@@ -17,7 +17,7 @@ async function showResults() {
     changeStream.on("change", (evt) => {
       const { documentKey, updateDescription, wallTime } = evt;
       console.log("// ⏰ 👀 📝  👇");
-      console.log({ documentKey, updateDescription, wallTime });
+      console.log(JSON.stringify({ documentKey, updateDescription, wallTime }, null, 2));
     });
 
   } catch (err) {
