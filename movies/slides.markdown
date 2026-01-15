@@ -100,23 +100,30 @@ Boundary typically time based. (Activity based sometimes)
 
 ---
 
+## Time & Authority
+
+**Q**: How to tell time?
+**A**:  **¯\\(◔̯◔)/¯**
+
+![diagram](./assets\slides-4.png)
+
+---
+
 ## Tumbling Window
 
 1. Shows run every 2 hours
 1. Compute per-show
 
-![diagram](./assets\slides-4.png)
-
-
+![diagram](./assets\slides-5.png)
 
 ---
 
 ## Hopping Window
 
-1. Theater turns-over every 2h
-1. Showtimes staggered
+1. Two hour movie run-length
+1. Starts are staggered
 
-![diagram](./assets\slides-5.png)
+![diagram](./assets\slides-6.png)
 
 ---
 
@@ -126,7 +133,7 @@ Fixed-time problems...
 
 Oops! What to do?
 
-![diagram](./assets\slides-6.png)
+![diagram](./assets\slides-7.png)
 
 ---
 
@@ -134,7 +141,7 @@ Oops! What to do?
 
 `allowedLateness` lets late arrivals to be counted after _window-end-time_.
 
-![diagram](./assets\slides-7.png)
+![diagram](./assets\slides-8.png)
 
 ---
 
@@ -142,7 +149,7 @@ Oops! What to do?
 
 > Close the lobby early - show in progress
 
-![diagram](./assets\slides-8.png)
+![diagram](./assets\slides-9.png)
 
 ---
 
@@ -171,7 +178,7 @@ Oops! What to do?
 
 * Closes when no event seen `gap` time after latest.
 
-![diagram](./assets\slides-9.png)
+![diagram](./assets\slides-10.png)
 
 ---
 
@@ -247,13 +254,13 @@ sp.createStreamProcessor("mySP", pipeline)
     ] ...
 ```
 
-![bg right:30% fit](assets/slides-3.png)
+![bg right:30% fit](assets/slides-5.png)
 
 ---
 
 ## Hopping - How?
 
-![bg right:30% fit](assets/slides-5.png)
+![bg right:30% fit](assets/slides-6.png)
 
 ```javascript
 {
@@ -275,7 +282,7 @@ sp.createStreamProcessor("mySP", pipeline)
 
 ## Lateness - How?
 
-![bg fit left:30% ](assets/slides-6.png)
+![bg fit left:30% ](assets/slides-7.png)
 
 ```javascript
 {

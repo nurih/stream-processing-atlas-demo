@@ -11,7 +11,7 @@ let sourceStream = {
 }
 
 
-let calculate = {
+let calculate = [{
   $tumblingWindow: {
     interval: { size: NumberInt(10), unit: "second" },
     pipeline: [
@@ -27,7 +27,7 @@ let calculate = {
         }
       }]
   }
-}
+}]
 
 let finalOutput = {
   $merge: {
@@ -41,7 +41,7 @@ let finalOutput = {
 
 let createInstance = () => sp.createStreamProcessor(
   "buyEventProcessor",
-  [sourceStream, calculate, finalOutput]
+  [sourceStream, ...calculate, finalOutput]
 );
 
 generateDocs = () => {

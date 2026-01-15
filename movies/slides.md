@@ -170,6 +170,27 @@ Boundary typically time based. (Activity based sometimes)
 
 ---
 
+## Time & Authority
+
+**Q**: How to tell time?
+**A**:  **¯\\(◔̯◔)/¯**
+
+```mermaid
+---
+config:
+  theme: neo
+---
+mindmap
+  root((Time))
+    p[Processor]
+          ))Wall((
+    et[Event]
+        ))Envelope((
+        ))Payload((
+```
+
+---
+
 ## Tumbling Window
 
 1. Shows run every 2 hours
@@ -195,14 +216,12 @@ gantt
     Elf @ 3 :done, des3, 15:00, 2h
 ```
 
-
-
 ---
 
 ## Hopping Window
 
-1. Theater turns-over every 2h
-1. Showtimes staggered
+1. Two hour movie run-length
+1. Starts are staggered
 
 ```mermaid
 ---
@@ -435,13 +454,13 @@ sp.createStreamProcessor("mySP", pipeline)
     ] ...
 ```
 
-![bg right:30% fit](assets/slides-3.png)
+![bg right:30% fit](assets/slides-5.png)
 
 ---
 
 ## Hopping - How?
 
-![bg right:30% fit](assets/slides-5.png)
+![bg right:30% fit](assets/slides-6.png)
 
 ```javascript
 {
@@ -463,7 +482,7 @@ sp.createStreamProcessor("mySP", pipeline)
 
 ## Lateness - How?
 
-![bg fit left:30% ](assets/slides-6.png)
+![bg fit left:30% ](assets/slides-7.png)
 
 ```javascript
 {
